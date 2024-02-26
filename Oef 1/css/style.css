@@ -18,10 +18,11 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.Formulier input{
+.Formulier input[type="text"], input[type="email"]{
     width: calc(100% - 20px);
     margin: 0,10,3,0;
 }
+
 .Formulier footer{
     background-color: beige;
     color: white;
@@ -30,4 +31,16 @@ body {
     text-align: center;
     width: 300px;
     margin-top: 20px;
+}
+
+.Formulier input[type="submit"]{
+    border-radius: 10px;
+    background-color:  #2f2f2f;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border: none;
+    outline: none;
+    width: 25%;
+
 }
