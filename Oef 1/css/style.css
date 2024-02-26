@@ -6,7 +6,7 @@ body {
     background-color: beige;
 }
 
-.nice-form-group {
+.form-input {
     margin-bottom: 20px;
 }
 
@@ -16,4 +16,18 @@ body {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Formulier input{
+    width: calc(100% - 20px);
+    margin: 0,10,3,0;
+}
+.Formulier footer{
+    background-color: beige;
+    color: white;
+    padding: 0;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    margin-top: 20px;
 }
