@@ -66,3 +66,52 @@ body {
 #label_checkbox{
     font-weight: normal;
 }
+
+
+
+
+.navigatie {
+    height: 100%;
+    width: 80px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: beige;
+  }
+  
+  .navigatie a {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 15px auto;
+  }
+  
+  .navigatie .home {
+    background-image: url('../images/home.svg');
+  }
+  .navigatie .profiel {
+    background-image: url('../images/Profile.png');
+  }
+  .navigatie .inbox {
+    background-image: url('../images/Inbox_font_awesome.svg.png');
+  }
+
+  
+
+  
+  .content {
+    margin-left: 80px;
+    padding: 16px;
+  }
+  
+  /* Optioneel: voeg een overgang toe voor een vloeiend effect */
+  .navigatie {
+    transition: width 0.5s;
+  }
+  
+  .content {
+    transition: margin-left 0.5s;
+  }
