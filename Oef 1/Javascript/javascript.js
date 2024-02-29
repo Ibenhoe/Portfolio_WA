@@ -31,45 +31,26 @@ function validerenForm() {
         alert('Vul alle velden in en vink de voorwaarden aan.');
     } else if (!emailValideren(email)) {
         alert('Voer een geldig e-mailadres in.');
-    } else {
-        alert('Formulier verzonden!');}
+    }else if (!kleuren.includes(kleur)) {
+        alert('Voer een geldige kleur in.\nDe kleuren zijn: red, green, blue, yellow, orange, purple, pink, brown, black.');
+        
+    }
+    else {
+        alert('Formulier verzonden!');
+        name = '';
+        lastName = '';
+        email = '';
+        kleur = '';
+        checkbox = false;
+
+    }
+
 
 function emailValideren(email) {
     var reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return reg.test(email);
         }
     }
-/*
-
-document.addEventListener('submit', function (e) {
-    var naam = document.getElementById('naam').value;
-    var email = document.getElementById('email').value;
-    var achternaam = document.getElementById('achternaam').value;
-    var kleur = document.getElementById('kleur2').value;
-    var checkbox = document.getElementById('box-voorwaarden').checked;
-
-
-    if (naam == "") {
-        alert("Naam is verplicht");
-        return false;
-    }else if (achternaam == "") {
-        alert("Achternaam is verplicht");
-        return false;
-    } else if (!emailValideren(email)) {
-        alert("Email is verplicht");
-        return false;
-    }else{
-        alert("Formulier is verstuurd");
-    }
-});	
 
 
 
-
-
-function emailValideren(email) {
-    var reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return reg.test(email);
-}
-    
-*/
