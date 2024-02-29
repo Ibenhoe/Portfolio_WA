@@ -2,12 +2,6 @@
 
 
 
-
-
-
-
-
-
 body {
     display: flex;
     justify-content: center;
@@ -78,6 +72,8 @@ body {
     top: 0;
     left: 0;
     background-color: beige;
+    display: flex;
+    flex-direction: column;
   }
   
   .navigatie a {
@@ -98,20 +94,48 @@ body {
   .navigatie .inbox {
     background-image: url('../images/Inbox_font_awesome.svg.png');
   }
-
+.navigatie .help {
+    background-image: url('../images/Help.png');
+    margin-top: auto
+  }
   
 
   
-  .content {
+.content {
     margin-left: 80px;
     padding: 16px;
   }
-  
-  /* Optioneel: voeg een overgang toe voor een vloeiend effect */
-  .navigatie {
-    transition: width 0.5s;
+
+.fade-in-text {
+    text-align: center;
+    position: absolute;
+    top: 15%; 
+    font-size: 200%;
   }
-  
-  .content {
-    transition: margin-left 0.5s;
+
+.fade-in-text h1 {
+    text-align: center;
+    opacity: 0;
+    animation: fadeInText 5s ease-in-out forwards;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: beige;
+    color: rgb(5, 5, 5);
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #2f2f2f;
   }
