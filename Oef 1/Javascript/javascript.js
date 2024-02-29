@@ -21,13 +21,13 @@ kleur.addEventListener('input', function () {
 
 
 function validerenForm() {
-    var name = document.getElementById('naam').value;
-    var lastName = document.getElementById('achternaam').value;
+    var naam = document.getElementById('naam').value;
+    var achternaam = document.getElementById('achternaam').value;
     var email = document.getElementById('email').value;
     var kleur = document.getElementById('kleur2').value;
     var checkbox = document.getElementById('box-voorwaarden').checked;
 
-    if (name === '' || lastName === '' || email === '' || kleur === '' || !checkbox) {
+    if (naam === '' || achternaam === '' || email === '' || kleur === '' || !checkbox) {
         alert('Vul alle velden in en vink de voorwaarden aan.');
     } else if (!emailValideren(email)) {
         alert('Voer een geldig e-mailadres in.');
@@ -37,8 +37,8 @@ function validerenForm() {
     }
     else {
         alert('Formulier verzonden!');
-        name = '';
-        lastName = '';
+        naam = '';
+        achternaam = '';
         email = '';
         kleur = '';
         checkbox = false;
