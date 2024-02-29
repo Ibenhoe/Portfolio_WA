@@ -6,6 +6,7 @@ Geinspireerd door: https://freefrontend.com/css-forms/
 Basic info cursus Web Essentials 1 hfst 4
 Grootste problemen ervoor zorgen dat de div in het midden staat, de extra shadow en border-radius werd door copilot in gevuld met een paar kleine correctie naar mijn wensen.
 
+
 Lettertype Ubuntu: https://fonts.google.com/specimen/Ubuntu 
 
 Submit button:
@@ -27,7 +28,7 @@ Foto profiel: https://www.google.com/url?sa=i&url=https%3A%2F%2Fthenounproject.c
 
 Foto home: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.svgrepo.com%2Fsvg%2F56717%2Fhome&psig=AOvVaw1G9996AXdp_kR3x9vJaqbx&ust=1709309061214000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCtt4yJ0YQDFQAAAAAdAAAAABAE 
 
-Ik heb ervoor gekozen om deze navigatie links te vestigen met de help button helemaal zoals je veel op websites ziet.
+Ik heb ervoor gekozen om deze navigatie links te vestigen met de help button helemaal zoals je op veel websites ziet.
 
 
 
