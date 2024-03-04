@@ -11,7 +11,7 @@ Lettertype Ubuntu: https://fonts.google.com/specimen/Ubuntu
 
 Submit button:
 Door het fout beginnen heb ik moeten opzoeken hoe ik op een input een functie moest toevoegen. https://chat.openai.com/share/4f5dcd90-ed94-42ec-9edb-10c1971a0255 
-Hiervan heb ik de onclick gebruikt waardoor ik in javascript kon laten controleren als alles wel was ingevuld. De controle voor de email heeft copilot aangevuld.
+Hiervan heb ik de onclick gebruikt waardoor ik in javascript kon laten controleren als alles wel was ingevuld. De controle voor de email komt van de website https://www.w3resource.com/javascript/form/email-validation.php.
 
 Extra bij Formulier:
 Wanneer men een kleur ingeeft die in de lijst staat zal de tekst veranderen naar de kleur. Voornamelijk copilot heeft de fouten eruit gehaald verder javascript ben ik zelf op gekomen. (opzoek naar de oplossing voor wanneer met het terug weg doet het terug zwart wordt maar heb daar verder nog geen tijd in gestoken)
@@ -31,4 +31,7 @@ Foto home: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.svgrepo.com%2Fs
 Ik heb ervoor gekozen om deze navigatie links te vestigen met de help button helemaal zoals je op veel websites ziet.
 
 
+
+Hfst 1: Constante
+Ik heb voor de constante gekozen om mijn naam daar in te zetten. Dit zodat ik deze kan laten tonen in de footer door gebruikt te maken van document.getElementById en de innerHTML. Het probleem was wel dat dit alleen werkte op de start pagina hiervoor heb ik het in de LocalStorage gestoken zodat deze wel blijft werken als je van pagina veranderd (bron: https://www.w3schools.com/jsref/prop_win_localstorage.asp).
 
