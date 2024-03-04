@@ -1,5 +1,7 @@
 'use strict';
 
+const naam_id = "Iben Vanthournout";
+
 
 let kleuren = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'brown', 'black'];
 
@@ -19,6 +21,11 @@ kleur.addEventListener('input', function () {
     
 });
 
+const footer = document.getElementById('footer_2');
+footer.innerHTML = 'Made by ' + naam_id;
+
+
+
 
 function validerenForm() {
     var naam = document.getElementById('naam').value;
@@ -37,6 +44,7 @@ function validerenForm() {
     }
     else {
         alert('Formulier verzonden!');
+        alert(`Welkom ${naam}` );
         naam = '';
         achternaam = '';
         email = '';
