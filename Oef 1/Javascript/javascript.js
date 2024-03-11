@@ -2,10 +2,15 @@
 
 
 //Hfst 1 footer : Made by Iben Vanthournout
-const naam_id = "Iben Vanthournout"; //Gebruik van const
-localStorage.setItem('naam_id', naam_id); // Gebruik van localStorage bron: https://www.w3schools.com/jsref/prop_win_localstorage.asp 
-const footer = document.getElementById('footer_2');
-footer.innerHTML = 'Made by ' + naam_id;
+
+
+(function () {
+    const naam_id = "Iben Vanthournout"; //Gebruik van const
+    localStorage.setItem('naam_id', naam_id); // Gebruik van localStorage bron: https://www.w3schools.com/jsref/prop_win_localstorage.asp 
+    const footer = document.getElementById('footer_2');
+    footer.innerHTML = 'Made by ' + naam_id;}()); 
+
+
 
 
 
@@ -29,7 +34,7 @@ kleur.addEventListener('input', function () { //Bron: https://www.w3schools.com/
 
 //Hfst 3 formulier valideren
 function validerenForm() {
-    var naam = document.getElementById('naam').value;
+    let naam = document.getElementById('naam').value;
     var achternaam = document.getElementById('achternaam').value;
     var email = document.getElementById('email').value;
     var kleur = document.getElementById('kleur2').value;
@@ -47,20 +52,16 @@ function validerenForm() {
     else {
         alert('Formulier verzonden!');
         alert(`Welkom ${naam}` ); //Gebruik van Template literals
-        naam = '';
-        achternaam = '';
-        email = '';
-        kleur = '';
-        checkbox = false;
-
+        naam.value = ''; // Leeg het tekstvak voor naam
+        achternaam.value = ''; // Leeg het tekstvak voor achternaam
+        email.value = ''; // Leeg het tekstvak voor e-mail
+        kleur.value = ''; // Leeg het tekstvak voor kleur
+        checkbox.checked = false; // Schakel het vinkje uit
     }
 
 //Hfst 3.2 email valideren
-function emailValideren(email) {
-    var reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;//Bron: https://www.w3resource.com/javascript/form/email-validation.php
-    return reg.test(email);
-        }
+    let emailValideren = (email) => { //arrow function
+        var reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;//Bron: https://www.w3resource.com/javascript/form/email-validation.php
+        return reg.test(email);
     }
-
-
-
+}
