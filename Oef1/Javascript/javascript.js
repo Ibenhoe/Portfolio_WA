@@ -65,3 +65,25 @@ function validerenForm() {
         return reg.test(email);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
