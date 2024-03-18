@@ -1,28 +1,44 @@
-
-
 const axios = require('axios');
+const fs = require('fs');
 
-let response = null;
-new Promise(async (resolve, reject) => {
+const fetchData = async () => {
   try {
-    response = await axios.get('https://sandbox-api.coinmarketcap.com/v1//v1/cryptocurrency/listings/latest', {
+    const response = await axios.get('https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?slug=ethereum,bitcoin', {
       headers: {
-        'X-CMC_PRO_API_KEY': '753e978f-0845-4046-8b8f-6a093111ecdc',
+      'X-CMC_PRO_API_KEY': '753e978f-0845-4046-8b8f-6a093111ecdc',
       },
     });
-  } catch(ex) {
-    response = null;
-    // error
-    console.log(ex);
-    reject(ex);
+
+    // Log de data die je ontvangt
+    console.log(response.data);
+
+    // Sla de data op in een lokale bestand zonder de tags
+    const dataWithoutTags = removeTags(response.data);
+    fs.writeFileSync('apiData.json', JSON.stringify(dataWithoutTags));
+
+    return response.data;
+  } catch (error) {
+    // Behandel eventuele fouten
+    console.error('Error fetching data:', error);
+    throw error;
   }
-  if (response) {
-    // success
-    const json = response.data;
-    console.log(json);
-    resolve(json);
-  }
-});
+};
+
+// Roep de functie aan
+fetchData();
+
+// Hulpmethode om tags te verwijderen uit de data
+function removeTags(data) {
+  // Implementeer de logica om tags te verwijderen
+  // Hier kun je bijvoorbeeld reguliere expressies gebruiken
+  // om de tags te verwijderen
+  return data;
+}
+
+
+
+
+
 
 /*
 // Maak een asynchrone functie voor het ophalen van de Bitcoin-prijs

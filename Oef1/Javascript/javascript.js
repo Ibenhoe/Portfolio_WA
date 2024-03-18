@@ -1,5 +1,7 @@
 'use strict';
 
+import fs from 'fs'; 
+
 
 //Hfst 1 footer : Made by Iben Vanthournout
 
@@ -68,6 +70,17 @@ function validerenForm() {
 
 
 
+// Lees de inhoud van het JSON-bestand
+const data = fs.readFileSync('apiData.json', 'utf8');
+
+// Parseer de JSON-data naar een JavaScript-object
+const jsonData = JSON.parse(data);
+
+// Haal de prijs van Ethereum op uit het JavaScript-object
+const ethereumPrice = jsonData.data.ethereum.quote.USD.price;
+
+// Log de prijs van Ethereum in de console
+console.log('Ethereum price:', ethereumPrice);
 
 
 
