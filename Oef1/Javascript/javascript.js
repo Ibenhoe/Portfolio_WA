@@ -1,6 +1,5 @@
-'use strict';
 
-import fs from 'fs'; 
+'use strict';
 
 
 //Hfst 1 footer : Made by Iben Vanthournout
@@ -10,7 +9,9 @@ import fs from 'fs';
     const naam_id = "Iben Vanthournout"; //Gebruik van const
     localStorage.setItem('naam_id', naam_id); // Gebruik van localStorage bron: https://www.w3schools.com/jsref/prop_win_localstorage.asp 
     const footer = document.getElementById('footer_2');
-    footer.innerHTML = 'Made by ' + naam_id;}()); 
+    footer.innerHTML = 'Made by ' + naam_id;
+    
+    }()); 
 
 
 
@@ -70,17 +71,6 @@ function validerenForm() {
 
 
 
-// Lees de inhoud van het JSON-bestand
-const data = fs.readFileSync('apiData.json', 'utf8');
-
-// Parseer de JSON-data naar een JavaScript-object
-const jsonData = JSON.parse(data);
-
-// Haal de prijs van Ethereum op uit het JavaScript-object
-const ethereumPrice = jsonData.data.ethereum.quote.USD.price;
-
-// Log de prijs van Ethereum in de console
-console.log('Ethereum price:', ethereumPrice);
 
 
 
