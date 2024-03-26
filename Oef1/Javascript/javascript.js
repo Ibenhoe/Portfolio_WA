@@ -31,7 +31,10 @@ kleur.addEventListener('input', function () { //Bron: https://www.w3schools.com/
     }
 });
 
-
+let emailValideren = (email) => { 
+    var reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;//Bron: https://www.w3resource.com/javascript/form/email-validation.php
+    return reg.test(email);
+}
 
 
 
@@ -55,18 +58,11 @@ function validerenForm() {
     else {
         alert('Formulier verzonden!');
         alert(`Welkom ${naam}` ); //Gebruik van Template literals
-        naam.value = ''; // Leeg het tekstvak voor naam
-        achternaam.value = ''; // Leeg het tekstvak voor achternaam
-        email.value = ''; // Leeg het tekstvak voor e-mail
-        kleur.value = ''; // Leeg het tekstvak voor kleur
-        checkbox.checked = false; // Schakel het vinkje uit
+        
     }
 
 //Hfst 3.2 email valideren
-    let emailValideren = (email) => { //arrow function
-        var reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;//Bron: https://www.w3resource.com/javascript/form/email-validation.php
-        return reg.test(email);
-    }
+    
 }
 
 
