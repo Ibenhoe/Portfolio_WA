@@ -29,8 +29,5 @@ fetchData();
 
 // Hulpmethode om tags te verwijderen uit de data
 function removeTags(data) {
-  // Implementeer de logica om tags te verwijderen
-  // Hier kun je bijvoorbeeld reguliere expressies gebruiken
-  // om de tags te verwijderen
   return data;
 }

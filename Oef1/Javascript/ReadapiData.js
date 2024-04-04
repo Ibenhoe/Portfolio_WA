@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 
+
+
 // Import and execute the code from Api.js
 require('./Api.js');
 
@@ -21,6 +23,11 @@ const bitcoinPrice = jsonData.data["1"].quote.USD.price;
 
 const ethereumObject = jsonData.data["1027"].quote.USD;
 const { price: ethPrice, volume_24h: ethVolume, volume_change_24h: ethVolumeChange, market_cap: ethMarketCap } = ethereumObject;
+
+const bitcoinPriceElement = document.getElementById('Price_Bitcoin');
+bitcoinPriceElement.textContent = `Bitcoin price: ${btcPrice} USD`;
+console.log(bitcoinPriceElement);
+
 
 console.log('Ethereum price:', ethPrice, 'USD');
 console.log('Ethereum volume 24h:', ethVolume, 'USD');

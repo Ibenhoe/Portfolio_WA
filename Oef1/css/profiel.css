@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: beige;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.navigatie {
+    height: 100%;
+    width: 80px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigatie a {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 15px auto;
+}
+
+.navigatie .home {
+    background-image: url('../images/home.svg');
+}
+
+.navigatie .profiel {
+    background-image: url('../images/Profile.png');
+}
+
+.navigatie .inbox {
+    background-image: url('../images/Inbox_font_awesome.svg.png');
+}
+
+.navigatie .help {
+    background-image: url('../images/Help.png');
+    margin-top: auto
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+.content ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none; /* Verwijder de lijststijl */
+    padding: 0; /* Verwijder de standaard opvulling */
+}
+
+.blok {
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    animation: fadeInText 5s ease-in-out forwards;
+    opacity: 0;
+    
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: beige;
+    color: rgb(5, 5, 5);
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #2f2f2f;
+}
+
+
+li {
+    list-style-type: none;
+}
+h1 {
+    text-align: left;
+    opacity: 0;
+    animation: fadeInText 5s ease-in-out forwards;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        
+    }
+    to {
+        opacity: 1;
+    }
+    }   
