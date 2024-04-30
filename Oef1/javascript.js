@@ -76,7 +76,15 @@ function validerenForm() {
 
 //Hfst 3.2 email valideren
     
-
+    fetch('api.js')
+        .then(response => response.json())
+        .then(data => {
+            const bitcoinBlock = document.getElementById('bitcoin');
+            bitcoinBlock.innerHTML = `Actuele waarde van Bitcoin: ${data.bitcoin}`;
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
 
 
 

@@ -1,33 +1,38 @@
 const axios = require('axios');
 const fs = require('fs');
+const axios = require('axios');
+const fs = require('fs');
 
+// Import the axios and fs modules
+
+// Define the fetchData function
 const fetchData = async () => {
   try {
     const response = await axios.get('https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?slug=ethereum,bitcoin', {
       headers: {
-      'X-CMC_PRO_API_KEY': '753e978f-0845-4046-8b8f-6a093111ecdc',
+        'X-CMC_PRO_API_KEY': '753e978f-0845-4046-8b8f-6a093111ecdc',
       },
     });
 
-    // Log de data die je ontvangt
-    console.log("API data: Successfull");
+    // Log the received data
+    console.log("API data: Successful");
 
-    // Sla de data op in een lokale bestand zonder de tags
+    // Remove the tags from the data
     const dataWithoutTags = removeTags(response.data);
     fs.writeFileSync('apiData.json', JSON.stringify(dataWithoutTags));
 
     return response.data;
   } catch (error) {
-    // Behandel eventuele fouten
+    // Handle any errors
     console.error('Error fetching data:', error);
     throw error;
   }
 };
 
-// Roep de functie aan
+// Call the fetchData function
 fetchData();
 
-// Hulpmethode om tags te verwijderen uit de data
+// Helper method to remove tags from the data
 function removeTags(data) {
   return data;
 }
