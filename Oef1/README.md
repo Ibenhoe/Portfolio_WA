@@ -35,3 +35,7 @@ Ik heb ervoor gekozen om deze navigatie links te vestigen met de help button hel
 Hfst 1: Constante
 Ik heb voor de constante gekozen om mijn naam daar in te zetten. Dit zodat ik deze kan laten tonen in de footer door gebruikt te maken van document.getElementById en de innerHTML. Het probleem was wel dat dit alleen werkte op de start pagina hiervoor heb ik het in de LocalStorage gestoken zodat deze wel blijft werken als je van pagina veranderd (bron: https://www.w3schools.com/jsref/prop_win_localstorage.asp).
 
+Api call:
+Volledig gemaakt door Chatgpt 
+https://chatgpt.com/share/f4dd3c9f-0763-4ecb-8a22-b03b429f0630
+Dit komt omdat de vorige api call werkte wel en was ook beter maar kon ik niet in de html krijgen.
