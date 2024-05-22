@@ -89,6 +89,7 @@
             <div class="bitcoin-info">
                 <h1>Bitcoin</h1>
                 <p>Startkapitaal: <span id="startAmount">1000</span> euro</p>
+                <p id="bitcoinPrice" style="display: none;"></p> <!-- Verborgen element voor Bitcoin-prijs -->
                 <div class="bet-options">
                     <label for="betAmount">Inzet (in euro's):</label>
                     <input type="number" id="betAmount" min="1">
@@ -121,6 +122,11 @@
                         }]
                     },
                     options: {
+                        animation: {
+                            duration: 5000, // Duration of the animation in milliseconds
+                            easing: 'linear', // Type of animation easing
+                            from: 0 // Start drawing the chart at index 0
+                },
                         scales: {
                             yAxes: [{
                                 scaleLabel: {
@@ -150,6 +156,17 @@
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+            function fetchBitcoinData() {
+            return fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur")
+                .then(response => response.json())
+                .then(data => {
+                    return data.bitcoin.eur;
+                })
+                .catch(error => {
+                    console.error('Error fetching Bitcoin data:', error);
+                    throw error;
+                });
+        }   
 
         function aggregatePrices(prices, interval) {
             const aggregatedPrices = [];
@@ -161,29 +178,98 @@
             return aggregatedPrices;
         }
 
-        function betOnPrice(isGoingUp) {
-            const betAmount = parseFloat(document.getElementById('betAmount').value);
-            const startAmount = parseFloat(document.getElementById('startAmount').innerText);
-            const randomChange = Math.random(); // Generate random number between 0 and 1
+        function fetchBitcoinData() {
+         return fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur")
+        .then(response => response.json())
+        .then(data => {
+            return data.bitcoin.eur;
+        })
+        .catch(error => {
+            console.error('Error fetching Bitcoin data:', error);
+            throw error;
+        });
+}
 
-            let resultMessage = "";
+async function calculateBitcoinAmount(priceInEuro) {
+    try {
+        const currentBitcoinPrice = await fetchBitcoinData();
+        const bitcoinAmount = priceInEuro / currentBitcoinPrice;
+        return bitcoinAmount.toFixed(8);
+    } catch (error) {
+        throw error;
+    }
+}
 
-            if (isNaN(betAmount) || betAmount <= 0) {
-                resultMessage = "Voer een geldige inzet in.";
-            } else {
-                let result;
-                if ((isGoingUp && randomChange > 0.5) || (!isGoingUp && randomChange <= 0.5)) {
-                    result = startAmount + betAmount;
-                    resultMessage = `Je hebt juist gegokt! Je wint ${betAmount.toFixed(2)} euro.<br>Je totale kapitaal nu: ${result.toFixed(2)} euro`;
-                } else {
-                    result = startAmount - betAmount;
-                    resultMessage = `Je hebt verkeerd gegokt! Je verliest ${betAmount.toFixed(2)} euro.<br>Je totale kapitaal nu: ${result.toFixed(2)} euro`;
-                }
-                document.getElementById('startAmount').innerText = result.toFixed(2);
-            }
+function calculateProfitLoss(isGoingUp, betAmount, startAmount, bitcoinAmount) {
+    const profitLossPercentage = Math.random() * 10;
+    const profitLossAmount = (betAmount * profitLossPercentage) / 100;
+    let newAmount;
+    if (isGoingUp) {
+        newAmount = startAmount + profitLossAmount;
+    } else {
+        newAmount = startAmount - profitLossAmount;
+    }
+    return {
+        profitLossPercentage: profitLossPercentage.toFixed(2),
+        profitLossAmount: profitLossAmount.toFixed(2),
+        newAmount: newAmount.toFixed(2),
+        bitcoinAmount: bitcoinAmount
+    };
+}
 
-            document.getElementById('result').innerHTML = resultMessage;
-        }
+function betOnPrice(isGoingUp) {
+    const betAmount = parseFloat(document.getElementById('betAmount').value);
+    const startAmount = parseFloat(document.getElementById('startAmount').innerText);
+
+    // Haal de Bitcoin-prijs op en bereken de hoeveelheid Bitcoin
+    fetchBitcoinData()
+        .then(bitcoinPrice => calculateBitcoinAmount(betAmount)
+            .then(bitcoinAmount => {
+                const { resultMessage, newAmount } = calculateProfitLoss(isGoingUp, betAmount, startAmount, bitcoinAmount);
+
+                // Update het startkapitaal
+                document.getElementById('startAmount').innerText = newAmount.toFixed(2);
+
+                // Toon het resultaatbericht
+                document.getElementById('result').innerHTML = resultMessage;
+            })
+            .catch(error => {
+                console.error('Error calculating Bitcoin amount:', error);
+            }))
+        .catch(error => {
+            console.error('Error fetching Bitcoin data:', error);
+        });
+    // Bereken de winst/verlies percentage en bedrag
+    const randomChange = Math.random(); // Generate random number between 0 and 1
+    const percentageChange = (randomChange - 0.5) * 2 * 10; // Random percentage between -10% and 10%
+    const resultPercentage = isGoingUp ? percentageChange : -percentageChange;
+    const resultAmount = startAmount * (1 + resultPercentage / 100) - startAmount;
+
+    // Bereken het nieuwe kapitaal
+    const result = startAmount + resultAmount;
+
+    // Bericht samenstellen op basis van winst/verlies
+    let resultMessage = "";
+    if (resultAmount >= 0) {
+        resultMessage = `Gefeliciteerd! Je hebt gewonnen.<br>
+                         Winstpercentage: ${resultPercentage.toFixed(2)}%<br>
+                         Winstbedrag: ${resultAmount.toFixed(2)} euro<br>
+                         Je nieuwe kapitaal: ${result.toFixed(2)} euro`;
+                         
+    } else {
+        resultMessage = `Helaas! Je hebt verloren.<br>
+                         Verliespercentage: ${-resultPercentage.toFixed(2)}%<br>
+                         Verliesbedrag: ${-resultAmount.toFixed(2)} euro<br>
+                         Je nieuwe kapitaal: ${result.toFixed(2)} euro`;	
+                        
+    }
+
+    // Update het startkapitaal
+    document.getElementById('startAmount').innerText = result.toFixed(2);
+
+    // Toon het resultaatbericht
+    document.getElementById('result').innerHTML = resultMessage;
+}
     </script>
 </body>
 </html>
