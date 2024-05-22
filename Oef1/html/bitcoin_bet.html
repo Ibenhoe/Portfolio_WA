@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiel</title>
+    <link rel="stylesheet" href="../css/profiel.css">
+    <style>
+        .bitcoin-container {
+            display: flex;
+            align-items: center;
+        }
+        .bitcoin-graphic {
+            width: 300px;
+            margin-right: 20px;
+        }
+        .bitcoin-info {
+            margin-left: 20px;
+        }
+        .bet-options {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigatie">
+        <a href="index.html" class="home"></a>
+        <a href="#" class="profiel"></a>
+        <a href="#" class="inbox"></a>
+        <a href="help.html" class="help"></a>
+    </div>   
+
+    <div class="bitcoin-container">
+        <img class="bitcoin-graphic" src="" alt="Bitcoin Graphic">
+
+        <div class="bitcoin-info">
+            <h1>Bitcoin</h1>
+            <p>Startkapitaal: <span id="startAmount">1000</span> euro</p>
+            <div class="bet-options">
+                <label for="betAmount">Inzet (in euro's):</label>
+                <input type="number" id="betAmount" min="1">
+                <button onclick="betOnPrice(true)">Bet op prijsstijging</button>
+                <button onclick="betOnPrice(false)">Bet op prijsdaling</button>
+                <p id="result"></p>
+            </div>
+        </div>
+    </div>
+   
+    <footer id="footer_2"></footer>
+
+    <script>
+        fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1")
+            .then(response => response.json())
+            .then(data => {
+                const prices = data.prices.map(price => price[1]);
+                const sparklineUrl = `https://quickchart.io/sparkline?c={type:'sparkline',data:{datasets:[{data:[${prices.join(',')}]}}}`;
+                document.querySelector('.bitcoin-graphic').src = sparklineUrl;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+        function betOnPrice(isGoingUp) {
+            const betAmount = parseFloat(document.getElementById('betAmount').value);
+            const startAmount = parseFloat(document.getElementById('startAmount').innerText);
+            const randomChange = Math.random(); // Generate random number between 0 and 1
+
+            let resultMessage = "";
+
+            if (isNaN(betAmount) || betAmount <= 0) {
+                resultMessage = "Voer een geldige inzet in.";
+            } else {
+                let result;
+                if ((isGoingUp && randomChange > 0.5) || (!isGoingUp && randomChange <= 0.5)) {
+                    result = startAmount + betAmount;
+                    resultMessage = `Je hebt juist gegokt! Je wint ${betAmount.toFixed(2)} euro.<br>Je totale kapitaal nu: ${result.toFixed(2)} euro`;
+                } else {
+                    result = startAmount - betAmount;
+                    resultMessage = `Je hebt verkeerd gegokt! Je verliest ${betAmount.toFixed(2)} euro.<br>Je totale kapitaal nu: ${result.toFixed(2)} euro`;
+                }
+            }
+
+            document.getElementById('result').innerHTML = resultMessage;
+        }
+    </script>
+</body>
+</html>
