@@ -77,6 +77,7 @@ function validerenForm() {
         
         localStorage.setItem('persoon', persoonJSON);
         inputs.forEach(input => input.value = '');
+        window.location.href = 'profiel.html';
     }
 }
 
