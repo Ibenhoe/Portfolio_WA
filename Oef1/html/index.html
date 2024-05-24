@@ -45,9 +45,9 @@
             <input type="checkbox" id="box-voorwaarden" />
             <label id="label_checkbox" for="box-voorwaarden">Ik ga akkoord met de voorwaarden</label>
         </div> 
-        <div class="form-input">
-            <input type="submit" value="Submit" onclick="validerenForm()" />  
-        </div>
+        <form onsubmit="event.preventDefault(); validerenForm(...document.querySelectorAll('.Formulier input'))">
+            <input type="submit" value="Submit" />
+        </form>
     </div>
     <footer id="footer_2"></footer>
     

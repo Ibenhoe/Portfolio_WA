@@ -1,5 +1,4 @@
 
-'use strict';
 
 
 //Hfst 1 footer : Made by Iben Vanthournout
@@ -40,53 +39,39 @@ let emailValideren = (email) => {
 
 //Hfst 3 formulier valideren
 function validerenForm() {
-    let naam = document.getElementById('naam').value;
-    var achternaam = document.getElementById('achternaam').value;
-    var email = document.getElementById('email').value;
-    var kleur = document.getElementById('kleur2').value;
-    var checkbox = document.getElementById('box-voorwaarden').checked;
+    // Use rest parameter to accept variable number of input elements
+    const inputs = [...arguments]; // spread operator gathers all arguments into an array
 
-    //Hfst 3.1 formulier valideren en indien nodig error tonen
+    // Extract values from input elements using destructuring
+    const { value: naam } = inputs.find(input => input.id === 'naam');
+    const { value: achternaam } = inputs.find(input => input.id === 'achternaam');
+    const { value: email } = inputs.find(input => input.id === 'email');
+    const { value: kleur } = inputs.find(input => input.id === 'kleur2');
+    const checkbox = inputs.find(input => input.id === 'box-voorwaarden').checked;
+
+    // Form validation logic remains unchanged
     if (naam === '' || achternaam === '' || email === '' || kleur === '' || !checkbox) {
         alert('Vul alle velden in en vink de voorwaarden aan.');
     } else if (!emailValideren(email)) {
         alert('Voer een geldig e-mailadres in.');
-    }else if (!kleuren.includes(kleur)) {
+    } else if (!kleuren.includes(kleur)) {
         alert('Voer een geldige kleur in.\nDe kleuren zijn: red, green, blue, yellow, orange, purple, pink, brown, black.');
-        
-    }
-    else {
+    } else {
         alert('Formulier verzonden!');
         alert(`Welkom ${naam}` ); //Gebruik van Template literals
-        
+
+        // Data handling remains unchanged
         const persoon = {
             naam: naam,
             achternaam: achternaam,
             email: email,
             kleur: kleur
         };
-        
-        // JSON-string maken van het persoon object
+
         const persoonJSON = JSON.stringify(persoon);
-        
-        // Gegevens opslaan in localStorage
         localStorage.setItem('persoon', persoonJSON);
     }
-    }
-
-//Hfst 3.2 email valideren
-    
-    fetch('api.js')
-        .then(response => response.json())
-        .then(data => {
-            const bitcoinBlock = document.getElementById('bitcoin');
-            bitcoinBlock.innerHTML = `Actuele waarde van Bitcoin: ${data.bitcoin}`;
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-
-
+}
 
 
 

@@ -38,63 +38,47 @@ let emailValideren = (email) => {
 
 
 
-//Hfst 3 formulier valideren
-function validerenForm() {
-    let naam = document.getElementById('naam').value;
-    var achternaam = document.getElementById('achternaam').value;
-    var email = document.getElementById('email').value;
-    var kleur = document.getElementById('kleur2').value;
-    var checkbox = document.getElementById('box-voorwaarden').checked;
 
+function validerenForm() {
+    const inputs = [
+        document.getElementById('naam'),
+        document.getElementById('achternaam'),
+        document.getElementById('email'),
+        document.getElementById('kleur2')
+    ];
+
+    const { value: naam } = inputs.find(input => input.id === 'naam') || {};
+    const { value: achternaam } = inputs.find(input => input.id === 'achternaam') || {};
+    const { value: email } = inputs.find(input => input.id === 'email') || {};
+    const { value: kleur } = inputs.find(input => input.id === 'kleur2') || {};
+
+    const { checked: checkbox } = document.getElementById('box-voorwaarden');
+
+    const kleuren = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'brown', 'black'];
+
+    // Rest-operator om de variabelen te verzamelen
+    const velden = [naam, achternaam, email, kleur];
+    
     //Hfst 3.1 formulier valideren en indien nodig error tonen
-    if (naam === '' || achternaam === '' || email === '' || kleur === '' || !checkbox) {
+    if (velden.some(field => field === '') || !checkbox) {
         alert('Vul alle velden in en vink de voorwaarden aan.');
     } else if (!emailValideren(email)) {
         alert('Voer een geldig e-mailadres in.');
-    }else if (!kleuren.includes(kleur)) {
+    } else if (!kleuren.includes(kleur)) {
         alert('Voer een geldige kleur in.\nDe kleuren zijn: red, green, blue, yellow, orange, purple, pink, brown, black.');
-        
-    }
-    else {
+    } else {
         alert('Formulier verzonden!');
         alert(`Welkom ${naam}` ); //Gebruik van Template literals
         
-        const persoon = {
-            naam: naam,
-            achternaam: achternaam,
-            email: email,
-            kleur: kleur
-        };
+        // Spread-operator om het object te maken
+        const persoon = { naam, achternaam, email, kleur };
         
-        // JSON-string maken van het persoon object
         const persoonJSON = JSON.stringify(persoon);
         
-        // Gegevens opslaan in localStorage
         localStorage.setItem('persoon', persoonJSON);
+        inputs.forEach(input => input.value = '');
     }
-    }
-
-//Hfst 3.2 email valideren
-    
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
