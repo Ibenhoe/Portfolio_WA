@@ -79,7 +79,7 @@
         <div class="navigatie">
             <a href="index.html" class="home"></a>
             <a href="#" class="profiel"></a>
-            <a href="#" class="inbox"></a>
+            
             <a href="help.html" class="help"></a>
         </div>
 
@@ -104,6 +104,7 @@
     <footer id="footer_2"></footer>
 
     <script>
+        
         fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1")
             .then(response => response.json())
             .then(data => {

@@ -1,6 +1,6 @@
-// Functie om gegevens van de API op te halen, inclusief prijzen, market cap en dagelijkse veranderingen
+
 function fetchCryptoData() {
-  // API URL's voor Bitcoin, Ethereum, HEX en Cardano gegevens
+
   const bitcoinURL = 'https://api.coingecko.com/api/v3/coins/bitcoin';
   const ethereumURL = 'https://api.coingecko.com/api/v3/coins/ethereum';
   const solanaURL = 'https://api.coingecko.com/api/v3/coins/solana';
@@ -60,7 +60,7 @@ function fetchCryptoData() {
       .catch(error => console.error('Error fetching Cardano data:', error));
 }
 
-// Functie om een leesbare notatie te maken van de market cap (bijv. 1000000000 wordt $1B)
+
 function formatMarketCap(marketCap) {
   if (marketCap >= 1e12) {
       return (marketCap / 1e12).toFixed(2) + 'T';
